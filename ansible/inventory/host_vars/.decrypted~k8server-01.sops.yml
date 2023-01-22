@@ -1,3 +1,0 @@
-kind: Secret
-ansible_user: tim
-ansible_become_pass: Dingo452
