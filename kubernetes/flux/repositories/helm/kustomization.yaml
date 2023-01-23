@@ -14,3 +14,5 @@ resources:
   - ./metrics-server.yaml
   - ./stakater.yaml
   - ./weave-gitops.yaml
+  - ./longhorn.yaml
+  - ./external-secrets.yaml
