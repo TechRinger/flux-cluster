@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: nfs-external-charts
+  namespace: flux-system
+spec:
+  interval: 15m
+  url: https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner
+  timeout: 3m
