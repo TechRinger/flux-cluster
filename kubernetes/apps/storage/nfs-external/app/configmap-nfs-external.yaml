@@ -48,11 +48,11 @@ data:
         # If it exists and has 'delete' value, delete the directory. If it exists and has 'retain' value, save the directory.
         # Overrides archiveOnDelete.
         # Ignored if value not set.
-        onDelete:
+        #onDelete:
 
         # Specifies a template for creating a directory path via PVC metadata's such as labels, annotations, name or namespace.
         # Ignored if value not set.
-        pathPattern:
+        #pathPattern:
 
         # Set access mode - ReadWriteOnce, ReadOnlyMany or ReadWriteMany
         accessModes: ReadWriteOnce
@@ -61,7 +61,7 @@ data:
         volumeBindingMode: Immediate
 
         # Storage class annotations
-        annotations: {}
+        #annotations: {}
 
       leaderElection:
         # When set to false leader election will be disabled
@@ -78,27 +78,27 @@ data:
         enabled: false
 
       # Deployment pod annotations
-      podAnnotations: {}
+      #podAnnotations: {}
 
       ## Set pod priorityClassName
       # priorityClassName: ""
 
-      podSecurityContext: {}
+      #podSecurityContext: {}
 
-      securityContext: {}
+      #securityContext: {}
 
       serviceAccount:
         # Specifies whether a ServiceAccount should be created
         create: true
 
         # Annotations to add to the service account
-        annotations: {}
+        #annotations: {}
 
         # The name of the ServiceAccount to use.
         # If not set and create is true, a name is generated using the fullname template
-        name:
+        #name:
 
-      resources: {}
+      #resources: {}
         # limits:
         #  cpu: 100m
         #  memory: 128Mi
@@ -106,11 +106,11 @@ data:
         #  cpu: 100m
         #  memory: 128Mi
 
-      nodeSelector: {}
+      #nodeSelector: {}
 
-      tolerations: []
+      #tolerations: []
 
-      affinity: {}
+      #affinity: {}
 
       # Additional labels for any resource created
-      labels: {}
+      #labels: {}

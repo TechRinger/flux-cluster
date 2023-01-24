@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: configmap-minecraft
-  namespace: podinfo
+  namespace: minecraft
 data:
   values.yaml: |-
     image:
