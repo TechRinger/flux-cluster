@@ -19,4 +19,4 @@ spec:
     nfs:
       server: ${NAS_ADDR}
       path: mnt/user/NFS_Mount
-      mountOptions: 'nfsvers=3'
+
