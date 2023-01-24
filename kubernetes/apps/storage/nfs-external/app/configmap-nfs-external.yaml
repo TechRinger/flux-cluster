@@ -15,7 +15,7 @@ data:
       imagePullSecrets: []
       nfs:
         server: ${NAS_ADDR}
-        path: /usr/mnt/NFS_Mount
+        path: mnt/user/NFS_Mount
         mountOptions:
         volumeName: nfs-subdir-1
         # Reclaim policy for the main nfs volume
