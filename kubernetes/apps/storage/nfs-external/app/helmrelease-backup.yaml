@@ -15,8 +15,7 @@ spec:
         kind: HelmRepository
         name: nfs-external-chart
         namespace: flux-system
-  values:
-    nfs:
-      server: ${NAS_ADDR}
-      path: mnt/user/NFS_Mount
-      mountOptions: 'nfsvers=3'
+  valuesFrom:
+  - kind: ConfigMap
+    name: configmap-nfs-external
+    valuesKey: values.yaml
