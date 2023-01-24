@@ -18,5 +18,5 @@ spec:
   values:
     nfs:
       server: ${NAS_ADDR}
-      path: mnt/user/NFS_Mount
+      path: /mnt/user/NFS_Mount
 
