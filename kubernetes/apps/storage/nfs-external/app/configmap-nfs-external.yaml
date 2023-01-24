@@ -14,7 +14,7 @@ data:
       pullPolicy: IfNotPresent
       imagePullSecrets: []
       nfs:
-        server: ${NAS_ADDR}
+        server: 10.11.230.59 #${NAS_ADDR}
         path: mnt/user/NFS_Mount
         mountOptions:
         volumeName: nfs-subdir-1
