@@ -17,7 +17,7 @@ data:
         server: 10.11.230.59
         path: mnt/user/NFS_Mount
         mountOptions: 'nfsvers=3'
-        volumeName: nfs-subdir-1
+        volumeName: "nfs"
         # Reclaim policy for the main nfs volume
         reclaimPolicy: Retain
 
