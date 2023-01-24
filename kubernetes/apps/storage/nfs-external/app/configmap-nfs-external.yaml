@@ -12,7 +12,7 @@ data:
       repository: k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner
       tag: v4.0.2
       pullPolicy: IfNotPresent
-    imagePullSecrets: []
+    #imagePullSecrets: []
     nfs:
       server: ${NAS_ADDR}
       path: mnt/user/NFS_Mount
