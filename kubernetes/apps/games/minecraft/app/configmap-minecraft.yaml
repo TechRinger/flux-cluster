@@ -42,7 +42,7 @@ data:
     podAnnotations:
       backup.velero.io/backup-volumes: datadir
     serviceAnnotations:
-      mc-router.itzg.me/externalServerName: "will-mc.techringer.net"
+      mc-router.itzg.me/externalServerName: "will-mc.${SECRET_DOMAIN}"
     extraEnv:
       MODS: "https://github.com/EssentialsX/Essentials/releases/download/2.19.7/EssentialsX-2.19.7.jar, https://cdn.modrinth.com/data/Lu3KuzdV/versions/mvLpRWww/CoreProtect-21.3.jar"
       ENABLE_AUTOPAUSE: FALSE
@@ -81,7 +81,7 @@ data:
               external-dns.home.arpa/enabled: "true"
               hajimari.io/icon: video-input-antenna
             hosts:
-            - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            - host: &host "will-mc.${SECRET_DOMAIN}"
               paths:
               - path: /
                 pathType: Prefix
