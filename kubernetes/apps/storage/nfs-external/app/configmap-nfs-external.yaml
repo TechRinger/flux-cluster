@@ -14,9 +14,9 @@ data:
       pullPolicy: IfNotPresent
       imagePullSecrets: []
       nfs:
-        server: 10.11.230.59 #${NAS_ADDR}
+        server: #${NAS_ADDR}
         path: mnt/user/NFS_Mount
-        mountOptions:
+        mountOptions: 'nfsvers=3'
         volumeName: nfs-subdir-1
         # Reclaim policy for the main nfs volume
         reclaimPolicy: Retain
