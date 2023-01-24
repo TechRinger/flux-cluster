@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: mcsv
+  name: minecraft-will
   namespace: default
 spec:
   interval: 5m
@@ -12,7 +12,7 @@ spec:
       version: 4.4.0
       sourceRef:
         kind: HelmRepository
-        name: minecraft-charts
+        name: minecraft
         namespace: flux-system
       interval: 5m
   valuesFrom:
