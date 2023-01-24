@@ -16,3 +16,5 @@ resources:
   - ./weave-gitops.yaml
   - ./longhorn.yaml
   - ./external-secrets.yaml
+  - ./minecraft.yaml
+  - ./nfs-external.yaml
