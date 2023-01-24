@@ -95,6 +95,6 @@ data:
             enabled: true
             type: LoadBalancer
             port: 19132
-            loadBalancerIP: 10.11.230.49
+            loadBalancerIP: 10.11.230.51
           ingress:
             enabled: false
