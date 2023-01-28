@@ -18,3 +18,4 @@ resources:
   - ./external-secrets.yaml
   - ./minecraft.yaml
   - ./nfs-external.yaml
+  - ./fairwinds.yaml
