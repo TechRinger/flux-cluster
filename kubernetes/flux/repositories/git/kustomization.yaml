@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - ./local-path-provisioner.yaml
   - ./external-snapshotter.yaml
-  - ./kube-prometheus-stack.yaml
   - ./kubegres.yaml
