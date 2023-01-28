@@ -5,4 +5,4 @@ resources:
   - ./namespace.yaml
   - ./kubernetes-dashboard/ks.yaml
   - ./loki-grafana/ks.yaml
-  - ./prometheus/kustomization.yaml
+
