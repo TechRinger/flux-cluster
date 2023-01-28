@@ -6,3 +6,4 @@ resources:
   - ./namespace.yaml
   - ./minio/ks.yaml
   - ./longhorn/ks.yaml
+  - ./nfs-external/ks.yaml
