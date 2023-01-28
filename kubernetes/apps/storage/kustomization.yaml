@@ -5,3 +5,5 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./nfs-external/ks.yaml
+  - ./minio/ks.yaml
+  - ./longhorn/ks.yaml

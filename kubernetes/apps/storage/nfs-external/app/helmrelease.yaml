@@ -13,7 +13,7 @@ spec:
       version: 4.0.17
       sourceRef:
         kind: HelmRepository
-        name: nfs-external-chart
+        name: nfs-subdir-external-provisioner
         namespace: flux-system
   values:
     nfs:
