@@ -23,6 +23,4 @@ spec:
       server: "${NAS_ADDR}"
       path: "/mnt/user/NFS_Mount"
     storageClass:
-      name: nfs-kube
-      defaultClass: false
       pathPattern: "${.PVC.namespace}-${.PVC.name}"
