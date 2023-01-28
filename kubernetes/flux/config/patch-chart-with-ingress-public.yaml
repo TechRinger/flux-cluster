@@ -1,0 +1,29 @@
+---
+- op: add
+  path: /spec/chart
+  value:
+    spec:
+      chart: app-template
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+- op: add
+  path: /spec/values/ingress/main/enabled
+  value: true
+- op: add
+  path: /spec/values/ingress/main/ingressClassName
+  value: nginx
+- op: add
+  path: /spec/values/ingress/main/hosts
+  value:
+    - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+      paths:
+        - path: /
+          pathType: Prefix
+- op: add
+  path: /spec/values/ingress/main/tls
+  value:
+    - hosts:
+        - *host
