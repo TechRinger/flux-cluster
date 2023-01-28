@@ -66,6 +66,8 @@ spec:
         default-ssl-certificate: "networking/${SECRET_DOMAIN/./-}-production-tls"
       podAnnotations:
         configmap.reloader.stakater.com/reload: cloudflare-networks
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "10254"
       resources:
         requests:
           cpu: 10m

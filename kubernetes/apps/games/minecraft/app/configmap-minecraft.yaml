@@ -80,11 +80,12 @@ data:
               external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
               external-dns.home.arpa/enabled: "true"
               hajimari.io/icon: video-input-antenna
+              hajimari.io/enable: "true"
+              hajimari.io/appName: "Minecraft"
             hosts:
-            - host: &host "will-mc.${SECRET_DOMAIN}"
-              paths:
-              - path: /
-                pathType: Prefix
+            - name: &host "will-mc.${SECRET_DOMAIN}"
+              path: /
+
             tls:
             - hosts:
               - *host
