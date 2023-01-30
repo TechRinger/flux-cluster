@@ -29,7 +29,7 @@ metadata:
   name: e-books
   namespace: storage
 spec:
-  storageClassName: nfs-calibre
+  storageClassName: e-books
   capacity:
     storage: 1Mi
   accessModes:
