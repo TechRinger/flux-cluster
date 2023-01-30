@@ -83,7 +83,7 @@ spec:
         annotations:
           hajimari.io/icon: mdi:pail
         hosts:
-          - host: &console-host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          - host: &console-host minio.${SECRET_DOMAIN}
             paths:
               - path: /
                 pathType: Prefix
