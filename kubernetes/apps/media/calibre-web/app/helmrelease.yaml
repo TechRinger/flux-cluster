@@ -47,6 +47,9 @@ spec:
         enabled: true
         type: emptyDir
         mountPath: /cache
+      books:
+        enabled: true
+        existingClaim: e-books
 
     resources:
       requests:

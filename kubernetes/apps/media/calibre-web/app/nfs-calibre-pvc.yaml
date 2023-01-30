@@ -22,6 +22,30 @@ spec:
     - noatime
     - nodiratime
 ---
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: e-books
+  namespace: storage
+spec:
+  storageClassName: nfs-calibre
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: ${NAS_ADDR}
+    path: "/mnt/user/E-Books"
+  mountOptions:
+    - nfsvers=4.2
+    - tcp
+    - intr
+    - hard
+    - noatime
+    - nodiratime
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -31,6 +55,19 @@ spec:
   accessModes:
     - ReadWriteMany
   storageClassName: nfs-calibre
+  resources:
+    requests:
+      storage: 1Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: e-books
+  namespace: storage
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: e-books
   resources:
     requests:
       storage: 1Mi
