@@ -50,6 +50,7 @@ spec:
       books:
         enabled: true
         existingClaim: e-books
+        mountPath: /books
 
     resources:
       requests:
