@@ -1,0 +1,40 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app theme-park
+  namespace: default
+spec:
+  values:
+
+    image:
+      repository: ghcr.io/onedr0p/theme-park
+      tag: 1.13.3@sha256:497f6d27ab4ffd23c32299334b56ad915a36137693bab5e7c0968d2210b7a42e
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+
+    ingress:
+      main:
+        annotations:
+          external-dns.home.arpa/enabled: "false"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: brightness-6
+
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: *app
+
+    resources:
+      requests:
+        cpu: 5m
+        memory: 10Mi
+      limits:
+        memory: 50Mi
