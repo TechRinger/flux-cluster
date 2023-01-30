@@ -14,7 +14,7 @@ spec:
       TZ: ${TIMEZONE}
       RADARR__INSTANCE_NAME: Radarr
       RADARR__PORT: &port 80
-      RADARR__APPLICATION_URL: "https://{{ .Release.Name }}.${SECRET_DOMAIN}"
+      RADARR__APPLICATION_URL: "https://radarr.${SECRET_DOMAIN}"
       RADARR__LOG_LEVEL: info
     envFrom:
       - secretRef:
