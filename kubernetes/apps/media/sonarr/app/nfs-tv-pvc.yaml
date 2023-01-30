@@ -13,7 +13,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: ${NAS_ADDR}
-    path: "/mnt/user/Recorded_TV"
+    path: "/mnt/user/TV"
   mountOptions:
     - nfsvers=4.2
     - tcp
