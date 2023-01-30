@@ -34,7 +34,7 @@ spec:
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/sonarr/${THEME}.css"></head>';
             sub_filter_once on;
-          hajimari.io/icon: mdi:television
+          hajimari.io/icon: video-input-antenna
 
     volumeClaimTemplates:
       - name: config
