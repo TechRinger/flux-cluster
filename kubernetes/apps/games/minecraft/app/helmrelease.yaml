@@ -103,11 +103,11 @@ spec:
       # Set to true if running Feed The Beast and get an error like "unable to launch forgemodloader"
       ftbLegacyJavaFixer: false
       # One of: peaceful, easy, normal, and hard
-      difficulty: easy
+      difficulty: normal
       # A comma-separated list of player names to whitelist.
       whitelist:
       # A comma-separated list of player names who should be admins.
-      ops:
+      ops: ["VoidNinja","FuegoNinja","CelticChaos"]
       # A server icon URL for server listings. Auto-scaled and transcoded.
       icon:
       # Max connected players.
@@ -145,7 +145,7 @@ spec:
       # One of: creative, survival, adventure, spectator
       gameMode: survival
       # Message of the Day
-      motd: "Welcome to Minecraft on Kubernetes!"
+      motd: "Welcome to Minecraft, prepare to build!"
       # If true, enable player-vs-player damage.
       pvp: false
       # One of: DEFAULT, FLAT, LARGEBIOMES, AMPLIFIED, CUSTOMIZED
@@ -191,7 +191,11 @@ spec:
       # Set the external port of the service, usefull when using the LoadBalancer service type
       servicePort: 25565
       clusterIP:
-      loadBalancerIP: 10.11.230.51
+      loadBalancerIP:
+      - valueFrom:
+            SecretKeyRef:
+              name: minecraft
+              key: LB_IP
       # loadBalancerSourceRanges: []
       ## Set the externalTrafficPolicy in the Service to either Cluster or Local
       # externalTrafficPolicy: Cluster
@@ -204,14 +208,23 @@ spec:
         # If you enable this, make SURE to change your password below.
         enabled: true
         port: 25575
-        password: "CHANGEME!"
+        password:
+        - valueFrom:
+            SecretKeyRef:
+              name: minecraft
+              key: rcon_password
+
         existingSecret:
         secretKey: rcon-password
         serviceType: LoadBalancer
         ## Set the external port if the rcon serviceType is NodePort
         nodePort:
         clusterIP:
-        loadBalancerIP: 10.11.230.51
+        loadBalancerIP:
+        - valueFrom:
+            SecretKeyRef:
+              name: minecraft
+              key: LB_IP
         # loadBalancerSourceRanges: []
         ## Set the externalTrafficPolicy in the Service to either Cluster or Local
         # externalTrafficPolicy: Cluster
