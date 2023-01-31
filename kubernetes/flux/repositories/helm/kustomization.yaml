@@ -19,3 +19,4 @@ resources:
   - ./minecraft.yaml
   - ./nfs-external.yaml
   - ./fairwinds.yaml
+  - ./minecraft-server-charts.yaml
