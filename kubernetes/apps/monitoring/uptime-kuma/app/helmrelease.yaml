@@ -28,6 +28,8 @@ spec:
             sub_filter_once on;
           hajimari.io/icon: mdi:alert-circle-check
           hajimari.io/enable: "true"
+          nginx.ingress.kubernetes.io/whitelist-source-range: |
+            10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
 
     volumeClaimTemplates:
       - name: config
