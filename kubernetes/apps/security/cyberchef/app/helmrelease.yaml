@@ -23,7 +23,7 @@ spec:
       main:
         annotations:
           external-dns.home.arpa/enabled: 'false'
-          hajimari.io/enable: 'true'
+          hajimari.io/enable: "true"
           hajimari.io/icon: hammer-wrench
 
     resources:
