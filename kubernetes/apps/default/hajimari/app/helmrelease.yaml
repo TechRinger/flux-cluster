@@ -40,6 +40,9 @@ spec:
       namespaceSelector:
         matchNames:
           - default
+          - games
+          - media
+          - security
     ingress:
       main:
         enabled: true
