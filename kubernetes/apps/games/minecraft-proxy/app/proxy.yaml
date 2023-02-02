@@ -1,0 +1,168 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app minecraft
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: minecraft-proxy
+      version: 3.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: minecraft-server-charts
+        namespace: flux-system
+  values:
+    # ref: https://hub.docker.com/r/itzg/docker-bungeecord/
+image:
+  repository: itzg/bungeecord
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecret: ""
+
+## Configure resource requests and limits
+## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+##
+resources:
+  requests:
+    memory: 250Mi
+    cpu: 500m
+  limits:
+    cpu: 1
+    memory: 500Mi
+
+securityContext:
+  # Security context settings
+  runAsUser: 0
+  runAsGroup: 0
+  fsGroup: 0
+# Most of these map to environment variables. See Minecraft for details:
+# https://hub.docker.com/r/itzg/docker-bungeecord/
+livenessProbe:
+  initialDelaySeconds: 30
+  periodSeconds: 5
+  failureThreshold: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+readinessProbe:
+  initialDelaySeconds: 30
+  periodSeconds: 5
+  failureThreshold: 10
+  successThreshold: 1
+  timeoutSeconds: 1
+startupProbe:
+  enabled: false
+  failureThreshold: 30
+  periodSeconds: 10
+
+minecraftProxy:
+  # This can be one of "BUNGEECORD", "WATERFALL", "VELOCITY", "CUSTOM"
+  type: VELOCITY
+
+  serviceType: LoadBalancer
+  ## Set the port used if the serviceType is NodePort
+  # nodePort:
+  loadBalancerIP: 10.11.230.51
+  # loadBalancerSourceRanges: []
+  ## Set the externalTrafficPolicy in the Service to either Cluster or Local
+  externalTrafficPolicy: Local
+  #configFilePath: /server/config.yml
+  # This can be set to the contents of your config file (only works with yaml currently)
+  config: |
+    player_limit: -1
+    ip_forward: true
+    permissions:
+      default:
+      - bungeecord.command.server
+      - bungeecord.command.list
+      - slashserver.lobby
+      - slashserver.survival
+      - slashserver.survival2
+      admin:
+      - bungeecord.command.alert
+      - bungeecord.command.end
+      - bungeecord.command.ip
+      - bungeecord.command.reload
+      - alert.receive
+      - alert.receive.firstjoin
+      - alert.command.toggle
+      - alert.command.reload
+    timeout: 30000
+    log_pings: true
+    log_commands: false
+    online_mode: true
+    servers:
+          lobby:
+            motd: 'Tech Ringer lobby'
+            address: mc-lobby-minecraft:25565
+            restricted: false
+          creative:
+            motd: 'Creative Server'
+            address: mc-minecraft:25565
+            restricted: false
+          survival:
+            motd: 'Boys Survival SMP'
+            address: mcsv-minecraft:25565
+            restricted: false
+          survival2:
+            motd: 'Public Survival EZ-mode SMP'
+            address: mcsv2-minecraft:25565
+            restricted: false
+    listeners:
+    - query_port: 25577
+      motd: 'Tech Ringer Lobby'
+      priorities:
+      - lobby
+      bind_local_address: true
+      tab_list: GLOBAL_PING
+      query_enabled: false
+      host: 0.0.0.0:25577
+      forced_hosts:
+        pvp.md-5.net: pvp
+      max_players: 1
+      tab_size: 60
+    ping_passthrough: true
+    groups:
+      VoidNinjas:
+      - admin
+      - family
+      FuegoNinja:
+      - admin
+      - family
+      CelticChaos:
+       - admin
+       - family
+      Avatica:
+       - admin
+       - family
+      force_default_server: false
+  #    proxy_protocol: false
+  #  disabled_commands:
+  #  - disabledcommandhere
+  #  network_compression_threshold: 256
+
+  #  connection_throttle: 4000
+  #  connection_throttle_limit: 3
+  #  stats: f2876aa6-74d2-468c-90ee-1377111f1c9f
+  #  forge_support: false
+  #  inject_commands: false
+
+persistence:
+  ## minecraft data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+
+
+podAnnotations:
+  configmap.reloader.stakater.com/reload: "waterfall-minecraft-proxy-config"
+
+deploymentAnnotations: {}
+
+serviceAnnotations: {}

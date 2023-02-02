@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: minecraft
-  namespace: storage
+  name: valheim-nfs-config
+  namespace: games
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: longhorn
+  storageClassName: nfs-subdir-external-provisioner
   resources:
     requests:
-      storage: 20Gi
+      storage: 1Mi

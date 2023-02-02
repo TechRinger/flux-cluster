@@ -1,0 +1,63 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mc-lobby
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://itzg.github.io/minecraft-server-charts/
+      chart: minecraft
+      version: 4.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: minecraft-server-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: itzg/minecraft-server
+      tag: 2022.16.0-java17
+    persistence:
+      storageClass: longhorn
+      dataDir:
+        # Set this to false if you don't care to persist state between restarts.
+        enabled: true
+        # existingClaim: nil
+        Size: 10Gi
+    resources:
+      requests:
+        memory: 2Gi
+        cpu: 250m
+      limits:
+        memory: 2Gi
+    podAnnotations:
+      backup.velero.io/backup-volumes: datadir
+    extraEnv:
+      ENABLE_AUTOPAUSE: FALSE
+      SPIGET_RESOURCES: "28140,6245,14754,102931"
+      MODS: "https://github.com/EssentialsX/Essentials/releases/download/2.19.7/EssentialsX-2.19.7.jar, https://cdn.modrinth.com/data/Lu3KuzdV/versions/mvLpRWww/CoreProtect-21.3.jar"
+    minecraftServer:
+      eula: "TRUE"
+      version: "LATEST"
+      type: VELOCITY
+      forceReDownload: true
+      onlineMode: false
+      difficulty: peaceful
+      maxTickTime: -1
+      serviceType: ClusterIP
+      gameMode: adventure
+      motd: "\u00a7Tech Ringer\u00a7 - \u00a7a\u00a7lLobby\u00a7"
+      icon: https://www.freeiconspng.com/uploads/minecraft-server-icon-13.png
+      rcon:
+        enabled: false
+
+
+podAnnotations:
+  configmap.reloader.stakater.com/reload: "waterfall-minecraft-proxy-config"
+
+deploymentAnnotations: {}
+
+serviceAnnotations: {}

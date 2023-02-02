@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-apps-minecraft-proxy
+  name: cluster-apps-valheim
   namespace: flux-system
   labels:
     substitution.flux.home.arpa/enabled: "true"
@@ -9,8 +9,7 @@ spec:
   dependsOn:
     - name: cluster-apps-metallb
     - name: cluster-apps-nfs-external
-    - name: cluster-apps-external-secrets
-  path: ./kubernetes/apps/games/minecraft/app
+  path: ./kubernetes/apps/games/valheim/app
   prune: true
   sourceRef:
     kind: GitRepository
