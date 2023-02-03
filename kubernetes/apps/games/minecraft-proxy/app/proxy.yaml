@@ -65,7 +65,7 @@ minecraftProxy:
   loadBalancerIP:
   - valueFrom:
     SecretKeyRef:
-      name: minecraft
+      name: minecraft-proxy
       key: LB_IP
   # loadBalancerSourceRanges: []
   ## Set the externalTrafficPolicy in the Service to either Cluster or Local

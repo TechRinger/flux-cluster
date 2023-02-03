@@ -16,7 +16,7 @@ spec:
   values:
     vpa:
       # vpa.enabled -- If true, the vpa will be installed as a sub-chart
-      enabled: true
+      enabled: false
       updater:
         enabled: false
     controller:
