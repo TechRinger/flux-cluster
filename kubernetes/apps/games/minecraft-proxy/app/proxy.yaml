@@ -53,10 +53,7 @@ readinessProbe:
   failureThreshold: 10
   successThreshold: 1
   timeoutSeconds: 1
-startupProbe:
-  enabled: false
-  failureThreshold: 30
-  periodSeconds: 10
+
 
 minecraftProxy:
   # This can be one of "BUNGEECORD", "WATERFALL", "VELOCITY", "CUSTOM"
