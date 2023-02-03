@@ -35,8 +35,8 @@ spec:
     # env:
     #   ...
     envFrom:
-      #- secretRef:
-      #    name: valheim-secret
+      - secretRef:
+          name: valheim-secret
       - configMapRef:
           name: valheim-config
       - configMapRef:
