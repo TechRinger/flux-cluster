@@ -47,7 +47,8 @@ spec:
         type: LoadBalancer
         externalTrafficPolicy: Local
         loadBalancerIP:
-          - valueFrom:
+          valueFrom:
+            SecretKeyRef:
               name: valheim-secret
               key: LB_VALHEIM
         ports:

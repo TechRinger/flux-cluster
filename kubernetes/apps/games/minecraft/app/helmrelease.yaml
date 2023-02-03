@@ -192,7 +192,7 @@ spec:
       servicePort: 25565
       clusterIP:
       loadBalancerIP:
-      - valueFrom:
+        valueFrom:
             SecretKeyRef:
               name: minecraft
               key: LB_IP
@@ -209,7 +209,7 @@ spec:
         enabled: true
         port: 25575
         password:
-        - valueFrom:
+          valueFrom:
             SecretKeyRef:
               name: minecraft
               key: RCON_PASSWORD
@@ -218,7 +218,7 @@ spec:
         nodePort:
         clusterIP:
         loadBalancerIP:
-        - valueFrom:
+          valueFrom:
             SecretKeyRef:
               name: minecraft
               key: LB_IP
