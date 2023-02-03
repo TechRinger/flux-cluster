@@ -74,6 +74,7 @@ minecraftProxy:
   config: |
     player_limit: -1
     ip_forward: true
+    eula: "true"
     permissions:
       default:
       - bungeecord.command.server
@@ -161,7 +162,7 @@ persistence:
 
 
 podAnnotations:
-  configmap.reloader.stakater.com/reload: "waterfall-minecraft-proxy-config"
+  configmap.reloader.stakater.com/reload: "velocity-minecraft-proxy-config"
 
 deploymentAnnotations: {}
 
