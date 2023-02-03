@@ -192,10 +192,8 @@ spec:
       servicePort: 25565
       clusterIP:
       loadBalancerIP:
-        valueFrom:
-            SecretKeyRef:
-              name: minecraft
-              key: LB_IP
+        name: minecraft
+        key: LB_IP
       # loadBalancerSourceRanges: []
       ## Set the externalTrafficPolicy in the Service to either Cluster or Local
       # externalTrafficPolicy: Cluster

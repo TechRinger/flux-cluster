@@ -63,10 +63,8 @@ spec:
       ## Set the port used if the serviceType is NodePort
       # nodePort:
       loadBalancerIP:
-        valueFrom:
-          SecretKeyRef:
-            name: minecraft-proxy
-            key: LB_IP
+        name: minecraft-proxy
+        key: LB_IP
       # loadBalancerSourceRanges: []
       ## Set the externalTrafficPolicy in the Service to either Cluster or Local
       externalTrafficPolicy: Local
