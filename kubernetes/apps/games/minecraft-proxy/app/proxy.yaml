@@ -12,7 +12,7 @@ spec:
       version: 3.2.0
       sourceRef:
         kind: HelmRepository
-        name: minecraft-server-charts
+        name: minecraft
         namespace: flux-system
   values:
     # ref: https://hub.docker.com/r/itzg/docker-bungeecord/
