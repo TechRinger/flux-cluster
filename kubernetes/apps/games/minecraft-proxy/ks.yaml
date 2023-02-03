@@ -10,7 +10,7 @@ spec:
     - name: cluster-apps-metallb
     - name: cluster-apps-nfs-external
     - name: cluster-apps-external-secrets
-  path: ./kubernetes/apps/games/minecraft/app
+  path: ./kubernetes/apps/games/minecraft-proxy/app
   prune: true
   sourceRef:
     kind: GitRepository
