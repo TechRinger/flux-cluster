@@ -4,3 +4,5 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./minecraft/ks.yaml
+  - ./minecraft-proxy/ks.yaml
+  - ./valheim/ks.yaml
