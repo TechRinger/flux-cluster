@@ -10,4 +10,4 @@ spec:
   storageClassName: nfs-subdir-external-provisioner
   resources:
     requests:
-      storage: 5Gi
+      storage: 1Mi
