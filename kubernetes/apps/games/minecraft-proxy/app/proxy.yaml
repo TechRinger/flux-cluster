@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app minecraft
+  name: &app minecraft-proxy
   namespace: media
 spec:
   interval: 5m
