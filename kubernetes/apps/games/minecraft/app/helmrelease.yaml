@@ -106,7 +106,7 @@ spec:
         ## Set the external port if the rcon serviceType is NodePort
         nodePort:
         clusterIP:
-        loadBalancerIP:
+        #loadBalancerIP:
         # loadBalancerSourceRanges: []
         ## Set the externalTrafficPolicy in the Service to either Cluster or Local
         # externalTrafficPolicy: Cluster
@@ -133,4 +133,7 @@ spec:
       name: minecraft-secret
       valuesKey: LB_IP
       targetPath: minecraftServer.loadBalancerIP
-
+    - kind: Secret
+      name: minecraft-secret
+      valuesKey: LB_IP
+      targetPath: minecraftServer.rcon.loadBalancerIP
