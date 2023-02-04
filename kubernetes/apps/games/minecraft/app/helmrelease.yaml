@@ -191,9 +191,9 @@ spec:
       # Set the external port of the service, usefull when using the LoadBalancer service type
       servicePort: 25565
       clusterIP:
-      loadBalancerIP:
-        name: minecraft
-        valuesKey: LB_IP
+      #loadBalancerIP:
+      #  name: minecraft
+      #  valuesKey: LB_IP
       # loadBalancerSourceRanges: []
       ## Set the externalTrafficPolicy in the Service to either Cluster or Local
       # externalTrafficPolicy: Cluster
@@ -208,7 +208,7 @@ spec:
         port: 25575
         password:
           valueFrom:
-            SecretKeyRef:
+            secretKeyRef:
               name: minecraft
               key: RCON_PASSWORD
         serviceType: LoadBalancer
