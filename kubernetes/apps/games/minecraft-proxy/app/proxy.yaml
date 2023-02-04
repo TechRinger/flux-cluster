@@ -60,11 +60,7 @@ spec:
       type: VELOCITY
       velocityVersion: 3.1.1
       serviceType: LoadBalancer
-      ## Set the port used if the serviceType is NodePort
-      # nodePort:
-      loadBalancerIP:
-        name: minecraft-proxy
-        key: LB_IP
+      #loadBalancerIP:
       # loadBalancerSourceRanges: []
       ## Set the externalTrafficPolicy in the Service to either Cluster or Local
       externalTrafficPolicy: Local
@@ -162,13 +158,8 @@ spec:
         # Set this to false if you don't care to persist state between restarts.
         enabled: false
 
-    podAnnotations: {}
-
-    deploymentAnnotations: {}
-
-    serviceAnnotations: {}
   valuesFrom:
   - targetPath: minecraftProxy.loadBalancerIP
     kind: Secret
-    name: minecraft-proxy
+    name: minecraft-proxy-secret
     valuesKey: LB_IP

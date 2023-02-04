@@ -54,10 +54,3 @@ spec:
       rcon:
         enabled: false
 
-
-podAnnotations:
-  configmap.reloader.stakater.com/reload: "waterfall-minecraft-proxy-config"
-
-deploymentAnnotations: {}
-
-serviceAnnotations: {}
