@@ -159,7 +159,7 @@ spec:
         enabled: false
 
   valuesFrom:
-  - kind: ExternalSecret
+  - kind: Secret
     name: minecraft-proxy-secret
     valuesKey: LB_IP
     targetPath: minecraftProxy.loadBalancerIP

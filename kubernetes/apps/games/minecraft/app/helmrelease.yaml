@@ -129,7 +129,7 @@ spec:
         ## specify a subpath in the volume where the data is. Useful when sharing volumes with other apps.
         # subPath: /path/to/dataDir
   valuesFrom:
-    - kind: ExternalSecret
+    - kind: Secret
       name: minecraft-secret
       valuesKey: LB_IP
       targetPath: minecraftServer.loadBalancerIP

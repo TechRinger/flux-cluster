@@ -108,7 +108,7 @@ spec:
     #               values:
     #                 - "hp1"
   valuesFrom:
-    - kind: ExternalSecret
+    - kind: Secret
       name: valheim-secret
       valuesKey: LB_VALHEIM
       targetPath: service.main.loadBalancerIP
