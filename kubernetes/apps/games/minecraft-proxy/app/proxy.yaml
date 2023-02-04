@@ -167,3 +167,8 @@ spec:
     deploymentAnnotations: {}
 
     serviceAnnotations: {}
+  valuesFrom:
+  - targetPath: minecraftProxy.loadBalancerIP
+    kind: Secret
+    name: minecraft-proxy
+    valuesKey: LB_IP
