@@ -58,7 +58,7 @@ spec:
     minecraftProxy:
       # This can be one of "BUNGEECORD", "WATERFALL", "VELOCITY", "CUSTOM"
       type: VELOCITY
-
+      velocityVersion: 3.1.1
       serviceType: LoadBalancer
       ## Set the port used if the serviceType is NodePort
       # nodePort:
