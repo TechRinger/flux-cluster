@@ -129,9 +129,10 @@ spec:
         ## specify a subpath in the volume where the data is. Useful when sharing volumes with other apps.
         # subPath: /path/to/dataDir
 
-  serviceAnnotations:
-    metallb.universe.tf/allow-shared-ip: "games"
-
+    serviceAnnotations:
+      metallb.universe.tf/allow-shared-ip: "games"
+    rconServiceAnnotations:
+      metallb.universe.tf/allow-shared-ip: "games"
   valuesFrom:
     - kind: Secret
       name: minecraft-secret

@@ -158,8 +158,8 @@ spec:
         # Set this to false if you don't care to persist state between restarts.
         enabled: false
 
-  serviceAnnotations:
-    metallb.universe.tf/allow-shared-ip: "games"
+    serviceAnnotations:
+      metallb.universe.tf/allow-shared-ip: "games"
   valuesFrom:
   - kind: Secret
     name: minecraft-proxy-secret
