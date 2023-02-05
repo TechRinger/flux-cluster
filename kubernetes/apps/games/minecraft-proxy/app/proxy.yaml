@@ -63,7 +63,7 @@ spec:
       #loadBalancerIP:
       # loadBalancerSourceRanges: []
       ## Set the externalTrafficPolicy in the Service to either Cluster or Local
-      externalTrafficPolicy: Local
+      externalTrafficPolicy: Cluster
       #configFilePath: /server/config.yml
       # This can be set to the contents of your config file (only works with yaml currently)
       config: |
