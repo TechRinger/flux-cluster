@@ -101,7 +101,7 @@ spec:
         # If you enable this, make SURE to change your password below.
         enabled: true
         port: 25575
-        password: ${NAS_ADDR}
+        #password:
         serviceType: LoadBalancer
         ## Set the external port if the rcon serviceType is NodePort
         nodePort:
@@ -142,3 +142,7 @@ spec:
       name: minecraft-secret
       valuesKey: LB_IP
       targetPath: minecraftServer.rcon.loadBalancerIP
+    - kind: Secret
+      name: minecraft-secret
+      valuesKey: RCON_PASSWORD
+      targetPath: minecraftServer.rcon.password
