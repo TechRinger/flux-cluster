@@ -11,7 +11,7 @@ metadata:
 data:
   config.yaml: |
     # Name of the tunnel you want to run
-    tunnel: 4a483ed0-1492-453f-823c-dfbc369d4acd
+    tunnel: k8s-tunnel
     # credentials-file: /etc/cloudflared/creds/credentials.json
     # Serves the metrics server under /metrics and the readiness server under /ready
     metrics: 0.0.0.0:2000
@@ -33,8 +33,8 @@ data:
     #  service: http://ingress-nginx-controller.networking
 
     ### Proxy traffic to the Kubernetes Services directly
-     - hostname: "uptime-kuma.${SECRET_EXT_DOMAIN}"
-       service: http://uptime-kuma.monitoring:3001
+      - hostname: "uptime-kuma.${SECRET_DOMAIN}"
+        service: http://uptime-kuma.monitoring:3001
 
     # - hostname: "cr.${SECRET_EXT_DOMAIN}"
       # service: https://harbor.development:443
