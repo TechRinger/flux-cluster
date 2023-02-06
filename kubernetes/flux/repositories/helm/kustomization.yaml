@@ -19,3 +19,6 @@ resources:
   - ./minecraft.yaml
   - ./nfs-external.yaml
   - ./fairwinds.yaml
+  - ./vector.yaml
+  - ./prometheus-community.yaml
+  - ./grafana.yaml
