@@ -19,6 +19,6 @@ resources:
   - ./kubernetes-dashboard/ks.yaml
   - ./uptime-kuma/ks.yaml
   # Standard Resources
-  - ./miscellaneous
+  #- ./miscellaneous
 
 
