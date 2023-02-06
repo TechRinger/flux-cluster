@@ -28,7 +28,7 @@ spec:
         sidecarsNamespace: monitoring
       ingress:
         enabled: true
-        hostname: "thanos-${CLUSTER_NAME}.${SECRET_DOMAIN}"
+        hostname: "thanos${CLUSTER_NAME}.${SECRET_DOMAIN}"
         ingressClassName: "nginx"
         tls: true
       replicaLabels:
