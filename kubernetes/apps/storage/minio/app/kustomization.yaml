@@ -6,6 +6,7 @@ resources:
   - ./external-secret.yaml
   - ./helmrelease.yaml
   - ./nfs-minio-pvc.yaml
+  - ./service.yaml
 patches:
   - path: https://raw.githubusercontent.com/grantok/flux/master/kubernetes/flux/config/patch-ss.yaml
     target:

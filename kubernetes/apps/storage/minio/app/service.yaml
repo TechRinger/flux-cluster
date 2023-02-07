@@ -1,0 +1,69 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: minio-external
+  namespace: storage
+spec:
+  ipFamilies:
+  - IPv4
+  ports:
+        ports:
+          http:
+            port: &console-port 9768
+          api:
+            enabled: true
+            port: &api-port 9769
+  type: ExternalName
+  #externalName: fromSecret
+  valuesFrom:
+    - kind: Secret
+      name: minio-external
+      valuesKey: S3_URL
+      targetPath: externalName
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: s3-external
+  namespace: storage
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+spec:
+  rules:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+        hosts:
+          - host: &console-host minio-external.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *console-port
+        tls:
+          - hosts:
+              - *console-host
+      s3:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          # external-dns.home.arpa/enabled: "true"
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          nginx.ingress.kubernetes.io/proxy-connect-timeout: "180"
+          nginx.ingress.kubernetes.io/proxy-body-size: 1024m
+          nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            chunked_transfer_encoding off;
+        hosts:
+          - host: &host-api "s3-external.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: *api-port
+        tls:
+          - hosts:
+              - *host-api

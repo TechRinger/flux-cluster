@@ -7,6 +7,6 @@ resources:
   - ./minio/ks.yaml
   - ./longhorn/ks.yaml
   - ./nfs-external/ks.yaml
-  - ./external-minio/app/external-secret.yaml
-  - ./external-minio/app/service.yaml
+#  - ./external-minio/app/external-secret.yaml
+#  - ./external-minio/app/service.yaml
 
