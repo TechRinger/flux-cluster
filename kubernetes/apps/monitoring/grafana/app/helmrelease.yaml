@@ -125,6 +125,8 @@ spec:
     ingress:
       enabled: true
       ingressClassName: nginx
+      annotations:
+        hajimari.io/icon: graph
       hosts:
         - &host "grafana.${SECRET_DOMAIN}"
       tls:
@@ -143,7 +145,7 @@ spec:
       - grafana-clock-panel
 
     podAnnotations:
-      configmap.reloader.stakater.com/reload: grafana
+      # configmap.reloader.stakater.com/reload: grafana
       secret.reloader.stakater.com/reload: grafana-secrets
 
     rbac:
