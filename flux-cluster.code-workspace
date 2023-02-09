@@ -1,7 +1,21 @@
 {
-    "folders": [
-        {
-            "path": "./"
-        }
-    ]
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.json5": "jsonc",
+			"**/ansible/**/*.yml": "ansible",
+			"**/ansible/**/*.sops.yml": "yaml",
+			"**/ansible/**/inventory/**/*.yml": "yaml",
+			"**/terraform/**/*.tf": "terraform",
+			"**/kubernetes/**/*.sops.toml": "plaintext"
+		},
+		"yaml.schemas": {
+			"ansible": "ansible/*.yml",
+			"Kubernetes": "kubernetes/*.yaml"
+		}
+	}
 }
