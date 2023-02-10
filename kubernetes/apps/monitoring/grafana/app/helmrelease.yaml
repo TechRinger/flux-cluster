@@ -89,7 +89,7 @@ spec:
       analytics:
         check_for_updates: false
       auth:
-        oauth_auto_login: true
+        oauth_auto_login: false
       auth.basic:
         enabled: true
       # auth.generic_oauth:
