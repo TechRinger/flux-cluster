@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: file-server-claim
+  name: authentik-claim
   namespace: security
 spec:
   storageClassName: nfs-client
