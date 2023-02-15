@@ -9,4 +9,4 @@ resources:
   - ./external-secrets/ks.yaml
   - ./cyberchef/ks.yaml
   - ./file-server/ks.yaml
-  - ./authentik/ks.yaml
+  #- ./authentik/ks.yaml
