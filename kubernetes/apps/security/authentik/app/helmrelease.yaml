@@ -172,44 +172,44 @@ spec:
     redis:
       enabled: true
     #mapped values from secrets
-    valuesFrom:
-      - kind: Secret
-        name: authentik-secret
-        valuesKey: email_host
-        targetPath: authentik.email.host
-      - kind: Secret
-        name: authentik-secret
-        valuesKey: email_sender
-        targetPath: authentik.email.from
-      - kind: Secret
-        name: authentik-secret
-        valuesKey: database_name
-        targetPath: authentik.postgresql.name
-      - kind: Secret
-        name: authentik-secret
-        valuesKey: postgresql_user
-        targetPath: authentik.postgresql.user
-      - kind: Secret
-        name: authentik-secret
-        valuesKey: postgresql_password
-        targetPath: authentik.postgresql.password
-      - kind: Secret
-        name: authentik-secret
-        valuesKey: cookie_key
-        targetPath: authentik.secret_key
-      - kind: Secret
-        name: authentik-database-secret
-        valuesKey: host
-        targetPath: authentik.postgresql.host
-      - kind: Secret
-        name: authentik-database-secret
-        valuesKey: postgresql.port
-        targetPath: authentik.postgresql.port
-      - kind: Secret
-        name: authentik-geoip-secret
-        valuesKey: account_id
-        targetPath: geoip.accountId
-      - kind: Secret
-        name: authentik-geoip-secret
-        valuesKey: license_key
-        targetPath: geoip.licenseKey
+  valuesFrom:
+    - kind: Secret
+      name: authentik-secret
+      valuesKey: email_host
+      targetPath: authentik.email.host
+    - kind: Secret
+      name: authentik-secret
+      valuesKey: email_sender
+      targetPath: authentik.email.from
+    - kind: Secret
+      name: authentik-secret
+      valuesKey: database_name
+      targetPath: authentik.postgresql.name
+    - kind: Secret
+      name: authentik-secret
+      valuesKey: postgresql_user
+      targetPath: authentik.postgresql.user
+    - kind: Secret
+      name: authentik-secret
+      valuesKey: postgresql_password
+      targetPath: authentik.postgresql.password
+    - kind: Secret
+      name: authentik-secret
+      valuesKey: cookie_key
+      targetPath: authentik.secret_key
+    - kind: Secret
+      name: authentik-database-secret
+      valuesKey: host
+      targetPath: authentik.postgresql.host
+    - kind: Secret
+      name: authentik-database-secret
+      valuesKey: postgresql.port
+      targetPath: authentik.postgresql.port
+    - kind: Secret
+      name: authentik-geoip-secret
+      valuesKey: account_id
+      targetPath: geoip.accountId
+    - kind: Secret
+      name: authentik-geoip-secret
+      valuesKey: license_key
+      targetPath: geoip.licenseKey
