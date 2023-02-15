@@ -203,7 +203,7 @@ spec:
       targetPath: authentik.postgresql.host
     - kind: Secret
       name: authentik-database-secret
-      valuesKey: postgresql.port
+      valuesKey: port
       targetPath: authentik.postgresql.port
     - kind: Secret
       name: authentik-geoip-secret
