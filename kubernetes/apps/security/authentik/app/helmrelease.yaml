@@ -1,0 +1,233 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: authentik
+  namespace: security
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: authentik
+      version: 2023.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-sauthentik
+        namespace: flux-system
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    # -- Server replicas
+    replicas: 1
+    # -- Custom priority class for different treatment by the scheduler
+    priorityClassName:
+    # -- server securityContext
+    securityContext: {}
+
+    worker:
+      # -- worker replicas
+      replicas: 1
+      # -- Custom priority class for different treatment by the scheduler
+      priorityClassName:
+      # -- worker securityContext
+      securityContext: {}
+
+    image:
+      repository: ghcr.io/goauthentik/server
+      tag: 2023.2.1
+      pullPolicy: IfNotPresent
+
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+          auth.home.arpa/enabled: "true"
+          hajimari.io/icon: two-factor-authentication
+          hajimari.io/enable: "true"
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+
+    podAnnotations: {}
+
+    authentik:
+      # -- Log level for server and worker
+      log_level: info
+      # -- Secret key used for cookie singing and unique user IDs,
+      # don't change this after the first install
+      ##secret_key: ""
+      # -- Path for the geoip database. If the file doesn't exist, GeoIP features are disabled.
+      geoip: /geoip/GeoLite2-City.mmdb
+      # -- Mode for the avatars. Defaults to gravatar. Possible options 'gravatar' and 'none'
+      avatars: gravatar
+      email:
+        ##host: ""
+        use_tls: true
+        ##from: ""
+      outposts:
+        container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
+      postgresql:
+        ##host: '{{ .Release.Name }}-postgresql'
+        ##name: "authentik"
+        ##user: "authentik"
+        ##password: ""
+        ##port: 5432
+      redis:
+        # -- set the redis hostname to talk to
+        # @default -- `{{ .Release.Name }}-redis-master`
+        host: '{{ .Release.Name }}-redis-master'
+        password: ""
+
+    # -- List of config maps to mount blueprints from. Only keys in the
+    # configmap ending with ".yaml" wil be discovered and applied
+    blueprints: []
+
+    # -- see configuration options at https://goauthentik.io/docs/installation/configuration/
+    env: {}
+    # AUTHENTIK_VAR_NAME: VALUE
+
+    envFrom: []
+    #  - configMapRef:
+    #      name: special-config
+
+    envValueFrom: {}
+    #  AUTHENTIK_VAR_NAME:
+    #    secretKeyRef:
+    #      key: password
+    #      name: my-secret
+
+    service:
+      # -- Service that is created to access authentik
+      enabled: true
+      type: ClusterIP
+      port: 80
+      name: http
+      protocol: TCP
+      labels: {}
+      annotations: {}
+
+    volumes: []
+
+    volumeMounts: []
+
+    # -- affinity applied to the deployments
+    affinity: {}
+
+    #  -- tolerations applied to the deployments
+    tolerations: []
+
+    # -- nodeSelector applied to the deployments
+    nodeSelector: {}
+
+    resources:
+      server: {}
+      worker: {}
+
+    # WARNING! When initially deploying, authentik has to do a few DB migrations. This may cause it to die from probe
+    # failure, but will continue on reboot. You can disable this during deployment if this is not desired
+    livenessProbe:
+      # -- enables or disables the livenessProbe
+      enabled: true
+      httpGet:
+        # -- liveness probe url path
+        path: /-/health/live/
+        port: http
+      initialDelaySeconds: 50
+      periodSeconds: 10
+
+    readinessProbe:
+      enabled: true
+      httpGet:
+        path: /-/health/ready/
+        port: http
+      initialDelaySeconds: 50
+      periodSeconds: 10
+
+    serviceAccount:
+      # -- Service account is needed for managed outposts
+      create: true
+      annotations: {}
+
+    prometheus:
+      serviceMonitor:
+        create: true
+        interval: 30s
+        scrapeTimeout: 3s
+      rules:
+        create: false
+
+    geoip:
+      # -- optional GeoIP, deploys a cronjob to download the maxmind database
+      enabled: true
+      # -- sign up under https://www.maxmind.com/en/geolite2/signup
+      accountId: ""
+      # -- sign up under https://www.maxmind.com/en/geolite2/signup
+      licenseKey: ""
+      editionIds: "GeoLite2-City"
+      image: maxmindinc/geoipupdate:v4.8
+      # -- number of hours between update runs
+      updateInterval: 8
+    redis:
+      # -- enable the bundled bitnami redis chart
+      enabled: false
+      architecture: standalone
+      auth:
+        enabled: false
+    #mapped values from secrets
+    valuesFrom:
+      - kind: Secret
+        name: authentik-secret
+        valuesKey: email_host
+        targetPath: authentik.email.host
+      - kind: Secret
+        name: authentik-secret
+        valuesKey: email_sender
+        targetPath: authentik.email.from
+      - kind: Secret
+        name: authentik-secret
+        valuesKey: database_name
+        targetPath: authentik.postgresql.name
+      - kind: Secret
+        name: authentik-secret
+        valuesKey: postgresql_user
+        targetPath: authentik.postgresql.user
+      - kind: Secret
+        name: authentik-secret
+        valuesKey: postgresql_password
+        targetPath: authentik.postgresql.password
+      - kind: Secret
+        name: authentik-secret
+        valuesKey: cookie_key
+        targetPath: authentik.secret_key
+      - kind: Secret
+        name: authentik-database-secret
+        valuesKey: host
+        targetPath: authentik.postgresql.host
+      - kind: Secret
+        name: authentik-database-secret
+        valuesKey: postgresql.port
+        targetPath: authentik.postgresql.port
+      - kind: Secret
+        name: authentik-geoip-secret
+        valuesKey: account_id
+        targetPath: geoip.accountID
+      - kind: Secret
+        name: authentik-geoip-secret
+        valuesKey: license_key
+        targetPath: geoip.licenseKey
