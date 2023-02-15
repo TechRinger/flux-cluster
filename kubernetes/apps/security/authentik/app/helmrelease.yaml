@@ -162,7 +162,7 @@ spec:
         interval: 30s
         scrapeTimeout: 3s
       rules:
-        create: false
+        create: true
 
     geoip:
       enabled: true
