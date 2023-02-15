@@ -208,7 +208,7 @@ spec:
       - kind: Secret
         name: authentik-geoip-secret
         valuesKey: account_id
-        targetPath: geoip.accountID
+        targetPath: geoip.accountId
       - kind: Secret
         name: authentik-geoip-secret
         valuesKey: license_key
