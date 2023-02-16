@@ -50,13 +50,10 @@ spec:
       enabled: true
       ingressClassName: nginx
       annotations:
-        external-dns.home.arpa/enabled: 'false'
-        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-        auth.home.arpa/enabled: "true"
         hajimari.io/icon: two-factor-authentication
         hajimari.io/enable: "true"
       hosts:
-        - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        - host: &host "authentik.${SECRET_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix
@@ -89,7 +86,7 @@ spec:
         ##password: ""
         ##port: 5432
       redis:
-        host: '{{ .Release.Name }}-redis-master'
+        host: 'authentik-redis-master'
         #password: ""
 
     # -- List of config maps to mount blueprints from. Only keys in the
