@@ -53,7 +53,7 @@ spec:
         hajimari.io/icon: two-factor-authentication
         hajimari.io/enable: "true"
       hosts:
-        - host: &host "authentik.${SECRET_DOMAIN}"
+        - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix
@@ -86,7 +86,7 @@ spec:
         ##password: ""
         port: 5432
       redis:
-        host: 'authentik-redis-master'
+        host: '{{ .Release.Name }}-redis-master'
         #password: ""
 
     # -- List of config maps to mount blueprints from. Only keys in the
@@ -134,7 +134,7 @@ spec:
       worker: {}
 
     livenessProbe:
-      enabled: false
+      enabled: true
       httpGet:
         path: /-/health/live/
         port: http
@@ -142,7 +142,7 @@ spec:
       periodSeconds: 10
 
     readinessProbe:
-      enabled: false
+      enabled: true
       httpGet:
         path: /-/health/ready/
         port: http
@@ -198,10 +198,6 @@ spec:
       name: authentik-secret
       valuesKey: host
       targetPath: authentik.postgresql.host
-    # - kind: Secret
-    #   name: authentik-secret
-    #   valuesKey: port
-    #   targetPath: authentik.postgresql.port
     - kind: Secret
       name: authentik-secret
       valuesKey: account_id
