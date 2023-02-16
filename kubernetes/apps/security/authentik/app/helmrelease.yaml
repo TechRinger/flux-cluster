@@ -47,22 +47,22 @@ spec:
       pullPolicy: IfNotPresent
 
     ingress:
-      main:
-        enabled: true
-        ingressClassName: nginx
-        annotations:
-          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
-          auth.home.arpa/enabled: "true"
-          hajimari.io/icon: two-factor-authentication
-          hajimari.io/enable: "true"
-        hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        external-dns.home.arpa/enabled: 'false'
+        external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        auth.home.arpa/enabled: "true"
+        hajimari.io/icon: two-factor-authentication
+        hajimari.io/enable: "true"
+      hosts:
+        - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - *host
 
     podAnnotations: {}
 
@@ -198,18 +198,18 @@ spec:
       valuesKey: cookie_secret
       targetPath: authentik.secret_key
     - kind: Secret
-      name: authentik-database-secret
+      name: authentik-secret
       valuesKey: host
       targetPath: authentik.postgresql.host
     - kind: Secret
-      name: authentik-database-secret
+      name: authentik-secret
       valuesKey: port
       targetPath: authentik.postgresql.port
     - kind: Secret
-      name: authentik-geoip-secret
+      name: authentik-secret
       valuesKey: account_id
       targetPath: geoip.accountId
     - kind: Secret
-      name: authentik-geoip-secret
+      name: authentik-secret
       valuesKey: license_key
       targetPath: geoip.licenseKey
