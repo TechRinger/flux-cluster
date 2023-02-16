@@ -137,18 +137,18 @@ spec:
       worker: {}
 
     livenessProbe:
-      enabled: true
+      enabled: false
       httpGet:
         path: /-/health/live/
-        port: 9300
+        port: http
       initialDelaySeconds: 50
       periodSeconds: 10
 
     readinessProbe:
-      enabled: true
+      enabled: false
       httpGet:
         path: /-/health/ready/
-        port: 9300
+        port: http
       initialDelaySeconds: 50
       periodSeconds: 10
 
