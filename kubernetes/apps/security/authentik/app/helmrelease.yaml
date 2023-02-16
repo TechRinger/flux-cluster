@@ -84,7 +84,7 @@ spec:
         ##name: "authentik"
         ##user: "authentik"
         ##password: ""
-        ##port: 5432
+        port: 5432
       redis:
         host: 'authentik-redis-master'
         #password: ""
@@ -198,10 +198,10 @@ spec:
       name: authentik-secret
       valuesKey: host
       targetPath: authentik.postgresql.host
-    - kind: Secret
-      name: authentik-secret
-      valuesKey: port
-      targetPath: authentik.postgresql.port
+    # - kind: Secret
+    #   name: authentik-secret
+    #   valuesKey: port
+    #   targetPath: authentik.postgresql.port
     - kind: Secret
       name: authentik-secret
       valuesKey: account_id
