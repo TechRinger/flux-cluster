@@ -140,7 +140,7 @@ spec:
       enabled: true
       httpGet:
         path: /-/health/live/
-        port: http
+        port: 9300
       initialDelaySeconds: 50
       periodSeconds: 10
 
@@ -148,7 +148,7 @@ spec:
       enabled: true
       httpGet:
         path: /-/health/ready/
-        port: http
+        port: 9300
       initialDelaySeconds: 50
       periodSeconds: 10
 
