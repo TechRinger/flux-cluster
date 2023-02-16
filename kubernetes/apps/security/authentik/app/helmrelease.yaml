@@ -53,7 +53,7 @@ spec:
         hajimari.io/icon: two-factor-authentication
         hajimari.io/enable: "true"
       hosts:
-        - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        - host: &host "authentik.${SECRET_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix
