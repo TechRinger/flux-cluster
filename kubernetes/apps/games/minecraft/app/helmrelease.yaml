@@ -87,12 +87,11 @@ spec:
       overrideServerProperties: false
       serviceType: LoadBalancer
       # Set the external port of the service, usefull when using the LoadBalancer service type
-      servicePort: 25565
+      servicePort: 25000
       #loadBalancerIP:
       # loadBalancerSourceRanges: []
       ## Set the externalTrafficPolicy in the Service to either Cluster or Local
       externalTrafficPolicy: Cluster
-      externalIPs:
 
       # A list of Spigot resources/plugins IDs to download.
       spigetResources: []
@@ -103,9 +102,6 @@ spec:
         port: 25575
         #password:
         serviceType: LoadBalancer
-        ## Set the external port if the rcon serviceType is NodePort
-        nodePort:
-        clusterIP:
         #loadBalancerIP:
         # loadBalancerSourceRanges: []
         ## Set the externalTrafficPolicy in the Service to either Cluster or Local
@@ -128,10 +124,7 @@ spec:
         # existingClaim: nil
         ## specify a subpath in the volume where the data is. Useful when sharing volumes with other apps.
         # subPath: /path/to/dataDir
-    podAnnotations:
-      metallb.universe.tf/allow-shared-ip: "games"
-    deploymentAnnotations:
-      metallb.universe.tf/allow-shared-ip: "games"
+
     serviceAnnotations:
       metallb.universe.tf/allow-shared-ip: "games"
     rconServiceAnnotations:
