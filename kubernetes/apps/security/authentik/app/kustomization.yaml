@@ -5,6 +5,6 @@ namespace: security
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
-  - ./outpost.yaml
+#  - ./outpost.yaml
 
 
