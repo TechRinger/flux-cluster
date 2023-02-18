@@ -61,7 +61,7 @@ spec:
           nginx.ingress.kubernetes.io/whitelist-source-range: |
             10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
           nginx.ingress.kubernetes.io/auth-url: |-
-            http://authentik.security.srv.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+            http://authentik.security.srv.cluster.local:9000/outpost.goauthentik.io
           # If you're using domain-level auth, use the authentication URL instead of the application URL
           nginx.ingress.kubernetes.io/auth-signin: |-
               https://authentik.${SECRET_DOMAIN}/outpost.goauthentik.io/start?rd=$escaped_request_uri
