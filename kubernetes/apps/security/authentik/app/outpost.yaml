@@ -4,13 +4,12 @@ metadata:
     name: authentik-embedded-outpost
     namespace: security
 spec:
+    ingressClassName: nginx
     rules:
         - host: authentik."${SECRET_DOMAIN}"
           http:
               paths: /outpost.goauthentik.io
               pathType: Prefix
               backend:
-                  service:
-                    name: ak-outpost-authentik-embedded-outpost
-                    port:
-                        number: 9000
+                  serviceName: ak-outpost-authentik-embedded-outpost
+                  port:servicePort: 9000
