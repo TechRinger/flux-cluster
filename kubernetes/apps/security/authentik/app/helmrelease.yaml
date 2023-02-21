@@ -57,11 +57,6 @@ spec:
           paths:
             - path: /
               pathType: Prefix
-            - path: /outpost.goauthentik.io
-              pathType: Prefix
-              backend:
-                  serviceName: ak-outpost-authentik-embedded-outpost
-                  servicePort: 9000
       tls:
         - hosts:
             - *host
