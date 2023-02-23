@@ -29,7 +29,8 @@ spec:
     controller:
       strategy: RollingUpdate
     image:
-      repository: docker.io/botpress/server
+      repository: botpress/server
+      pullPolicy: IfNotPresent
       tag: latest
     service:
       main:
