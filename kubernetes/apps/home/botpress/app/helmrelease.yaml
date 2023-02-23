@@ -29,7 +29,7 @@ spec:
     controller:
       strategy: RollingUpdate
     image:
-      repository: botpress/server
+      repository: docker.io/botpress/server
     service:
       main:
         ports:
