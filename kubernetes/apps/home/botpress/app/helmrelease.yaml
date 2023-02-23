@@ -30,6 +30,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: docker.io/botpress/server
+      target: latest
     service:
       main:
         ports:
