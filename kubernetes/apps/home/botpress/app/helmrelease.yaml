@@ -30,7 +30,6 @@ spec:
       strategy: RollingUpdate
     image:
       repository: botpress/server
-      tag: latest
     service:
       main:
         ports:
