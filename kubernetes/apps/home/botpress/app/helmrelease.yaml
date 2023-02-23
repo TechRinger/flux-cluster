@@ -69,7 +69,6 @@ spec:
               - *host
     env:
     - PG_SSL: "false"
-    - name: botpress
     - name: PG_HOST
       valueFrom:
         secretKeyRef:
