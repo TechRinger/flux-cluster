@@ -70,7 +70,13 @@ spec:
               - *host
     env:
     - name: name
-      value: "botpress"
+      value: botpress
+    - name: BPFS_STORAGE
+      value: database
+    - name: BP_MODULE_NLU_DUCKLINGURL
+      value: http://botpress_lang:8000
+    - name: BP_MODULE_NLU_LANGUAGESOURCES
+      value: '[{"endpoint":"http://botpress_lang:3100"}]'
     - name: PG_SSL
       value: "false"
     - name: PG_HOST
@@ -102,6 +108,6 @@ spec:
     resources:
       requests:
         cpu: 5m
-        memory: 10Mi
+        memory: 4Gi
       limits:
         memory: 6Gi
