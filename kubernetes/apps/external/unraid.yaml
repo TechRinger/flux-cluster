@@ -17,7 +17,7 @@ metadata:
   namespace: external
 subsets:
     - addresses:
-        - ip: ${NAS_ADDR}
+        - ip: 10.11.230.59
       ports:
         - port: 8443
 ---
