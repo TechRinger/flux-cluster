@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
    - ./namespace.yaml
    - ./unraid.yaml
+   - ./3d.yaml
