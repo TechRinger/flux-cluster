@@ -17,7 +17,7 @@ metadata:
   namespace: external
 subsets:
     - addresses:
-        - ip: ${PRINTER_3D_ADDR}
+        - ip: ${PRINTER_ADDR}
       ports:
         - port: 80
 ---
