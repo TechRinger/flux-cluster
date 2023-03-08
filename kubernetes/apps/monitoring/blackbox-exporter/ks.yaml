@@ -4,8 +4,6 @@ kind: Kustomization
 metadata:
   name: cluster-apps-blackbox-exporter
   namespace: flux-system
-  labels:
-    substitution.flux.home.arpa/enabled: "true"
 spec:
   interval: 10m
   path: "./kubernetes/apps/monitoring/blackbox-exporter/app"
