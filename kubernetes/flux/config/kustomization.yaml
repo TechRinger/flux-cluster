@@ -4,3 +4,8 @@ kind: Kustomization
 resources:
   - ./flux.yaml
   - ./cluster.yaml
+  - ./patch-chart-with-ingress-public.yaml
+  - ./patch-chart-with-ingress-public.yaml
+  - ./patch-ss.yaml
+  - ./patch-unraid-perms.yaml
+
