@@ -6,10 +6,10 @@ resources:
   - ./external-secret.yaml
   - ./helmrelease.yaml
   - ./nfs-minio-pvc.yaml
-# patches:
-#   - path: https://raw.githubusercontent.com/grantok/flux/master/kubernetes/flux/config/patch-ss.yaml
-#     target:
-#       kind: HelmRelease
-#   - path: https://raw.githubusercontent.com/grantok/flux/master/kubernetes/flux/config/patch-unraid-perms.yaml
-#     target:
-#       kind: HelmRelease
+patches:
+  - path: https://raw.githubusercontent.com/grantok/flux/master/kubernetes/flux/config/patch-ss.yaml
+    target:
+      kind: HelmRelease
+  - path: https://raw.githubusercontent.com/grantok/flux/master/kubernetes/flux/config/patch-unraid-perms.yaml
+    target:
+      kind: HelmRelease
