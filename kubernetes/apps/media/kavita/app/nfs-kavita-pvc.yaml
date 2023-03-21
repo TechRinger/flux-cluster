@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: e-books
-  namespace: storage
+  namespace: media
 spec:
   storageClassName: e-books
   capacity:
@@ -26,7 +26,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: e-books
-  namespace: storage
+  namespace: media
 spec:
   accessModes:
     - ReadWriteMany
@@ -39,7 +39,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: kavita-claim
-  namespace: security
+  namespace: media
 spec:
   storageClassName: nfs-client
   accessModes:

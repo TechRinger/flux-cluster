@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: authentik
+  name: discord-xsoar
   namespace: security
 spec:
   interval: 15m
@@ -46,9 +46,8 @@ spec:
       tag: latest
       pullPolicy: IfNotPresent
 
-  valuesFrom:
-    - kind: Secret
-      name: authentik-secret
-      valuesKey: email_host
-      targetPath: authentik.email.host
-    -
+    # env:
+    #   ...
+    envFrom:
+      - secretRef:
+          name: discord-xsoar-secret
