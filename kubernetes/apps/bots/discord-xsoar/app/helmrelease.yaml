@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: discord-xsoar
-  namespace: security
+  namespace: bots
 spec:
   interval: 15m
   chart:
@@ -26,20 +26,11 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    # -- Server replicas
-    replicas: 1
-    # -- Custom priority class for different treatment by the scheduler
-    priorityClassName:
-    # -- server securityContext
-    securityContext: {}
-
-    worker:
-      # -- worker replicas
-      replicas: 1
-      # -- Custom priority class for different treatment by the scheduler
-      priorityClassName:
-      # -- worker securityContext
-      securityContext: {}
+    service:
+      main:
+        ports:
+          http:
+            port: &port 8080
 
     image:
       repository: ghcr.io/techringer/discordbot
