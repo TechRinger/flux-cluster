@@ -7,3 +7,4 @@ resources:
   - ./overseerr/ks.yaml
   - ./tautulli/ks.yaml
   - ./calibre-web/ks.yaml
+  - ./kavita/ks.yaml
