@@ -36,8 +36,8 @@ spec:
       repository: ghcr.io/techringer/discordbot
       tag: latest
       pullPolicy: IfNotPresent
-      imagePullSecrets:
-      - name: private-repo-techringer
+    imagePullSecrets:
+    - name: private-repo-techringer
 
     # env:
     #   ...
