@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: bots
 resources:
   - ./externalsecret.yaml
-  - ./externalreporsecret.yaml
+  - ./externalreposecret.yaml
   - ./helmrelease.yaml
 
 
