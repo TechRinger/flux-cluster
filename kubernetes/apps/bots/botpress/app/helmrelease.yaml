@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: botpress
-  namespace: home
+  namespace: bots
 spec:
   interval: 15m
   chart:
@@ -43,13 +43,13 @@ spec:
         custom: true
         spec:
           httpGet:
-            path: /
+            path: /admin
             port: *port
           initialDelaySeconds: 120
           periodSeconds: 10
           timeoutSeconds: 1
           failureThreshold: 3
-      readiness: *probes
+      # readiness: *probes
       startup:
         enabled: false
     ingress:
