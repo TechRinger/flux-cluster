@@ -31,11 +31,24 @@ spec:
         ports:
           http:
             port: &port 8080
-
+    probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              exec:
+                command:
+                - cat
+                - /bot/bot.py
+              initialDelaySeconds: 5
+              periodSeconds: 5
+          readiness: *probes
+          startup:
+            enabled: false
     image:
       repository: ghcr.io/techringer/discordbot
       tag: latest
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
     imagePullSecrets:
     - name: private-repo-techringer
 
