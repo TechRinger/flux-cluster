@@ -39,7 +39,7 @@ spec:
               exec:
                 command:
                 - cat
-                - /bot/bot.py
+                - /bot/bot/bot.py
               initialDelaySeconds: 5
               periodSeconds: 5
           readiness: *probes
