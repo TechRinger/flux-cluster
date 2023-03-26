@@ -5,3 +5,4 @@ resources:
    - ./namespace.yaml
    - ./unraid.yaml
    - ./printer.yaml
+   - ./kube-api.yaml
