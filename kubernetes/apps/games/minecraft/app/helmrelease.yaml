@@ -47,7 +47,7 @@ spec:
       # One of: peaceful, easy, normal, and hard
       difficulty: normal
       # A comma-separated list of player names who should be admins.
-      ops: ["VoidNinja","FuegoNinja","CelticChaos"]
+      ops: ["VoidNinja","FuegoNinja","CelticChaos","VoidNinjas"]
 
       # Max connected players.
       maxPlayers: 20
@@ -65,14 +65,14 @@ spec:
       # One of: creative, survival, adventure, spectator
       gameMode: survival
       # Message of the Day
-      motd: "Welcome to Minecraft, prepare to build!"
+      motd: "Welcome to Willcraft, prepare to Die!"
       # If true, enable player-vs-player damage.
       pvp: false
       # One of: DEFAULT, FLAT, LARGEBIOMES, AMPLIFIED, CUSTOMIZED
       levelType: DEFAULT
       # When levelType == FLAT or CUSTOMIZED, this can be used to further customize map generation.
       # ref: https://hub.docker.com/r/itzg/minecraft-server/
-      worldSaveName: world
+      worldSaveName: will-world
       # Check accounts against Minecraft account service.
       onlineMode: true
       # If you adjust this, you may need to adjust resources.requests above to match.
