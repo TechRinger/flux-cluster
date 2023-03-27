@@ -1,0 +1,23 @@
+## Job to build docker image
+name: Push Notification
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  notify-complete:
+    name: Flux Push
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Discord notification
+      uses: Ilshidur/action-discord@master
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+      with:
+        args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} was updated.'
+
