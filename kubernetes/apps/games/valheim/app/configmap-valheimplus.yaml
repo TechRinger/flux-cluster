@@ -8,7 +8,7 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   ### valheim plus: https://valheim.plus/documentation/list
-  VALHEIM_PLUS: "true"
+  VALHEIM_PLUS: "false"
   ### beehive
   VPCFG_Beehive_enabled: "true"
   VPCFG_Beehive_honeyProductionSpeed: "300" # default 1200 s == 24 in-game hours
