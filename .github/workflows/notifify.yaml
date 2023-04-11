@@ -13,11 +13,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Discord notification
-      uses: Ilshidur/action-discord@master
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
+    # - name: Discord notification
+    #   uses: Ilshidur/action-discord@master
+    #   env:
+    #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+    #     uses: Ilshidur/action-discord@master
+    #   with:
+    #     args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} was updated.'
+    - uses: sarisia/actions-status-discord@v1
+      if: always()
       with:
-        args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} was updated.'
-
+        webhook: ${{ secrets.DISCORD_WEBHOOK }}
+        status: ${{ job.status }}
+        title: "Flux K8s update"
+        description: "Flux was updated"
+        #image: ${{ secrets.EMBED_IMAGE }}
+        color: 0x0000ff
+        url: "https://github.com/TechRinger/flux-cluster"
+        #avatar_url: ${{ secrets.AVATAR_URL }}
