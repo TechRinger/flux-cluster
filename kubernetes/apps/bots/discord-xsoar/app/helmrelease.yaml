@@ -32,19 +32,26 @@ spec:
           http:
             port: &port 8080
     probes:
-          liveness: &probes
-            enabled: true
-            custom: true
-            spec:
-              exec:
-                command:
-                - cat
-                - /bot/README.md
-              initialDelaySeconds: 30
-              periodSeconds: 5
-          readiness: *probes
-          startup:
-            enabled: false
+      livenessProbe:
+        exec:
+          command:
+            - cat
+            - /bot/README.md
+        initialDelaySeconds: 30
+        timeoutSeconds: 1
+        periodSeconds: 5
+        successThreshold: 1
+        failureThreshold: 3
+      readinessProbe:
+        exec:
+          command:
+            - cat
+            - /bot/README.md
+        initialDelaySeconds: 30
+        timeoutSeconds: 1
+        periodSeconds: 5
+        successThreshold: 1
+        failureThreshold: 3
     image:
       repository: ghcr.io/techringer/discordbot
       tag: latest
