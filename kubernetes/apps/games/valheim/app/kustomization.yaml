@@ -6,4 +6,4 @@ resources:
   - ./externalsecret.yaml
   - ./helm-release.yaml
   - ./configmap-valheim.yaml
-  - ./configmap-valheimplus.yaml
+#  - ./configmap-valheimplus.yaml
