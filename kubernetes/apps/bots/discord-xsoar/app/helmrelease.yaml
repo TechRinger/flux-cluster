@@ -39,7 +39,7 @@ spec:
               exec:
                 command:
                 - cat
-                - /bot/README.md
+                - /etc/os-release
               initialDelaySeconds: 30
               periodSeconds: 5
           readiness: *probes
