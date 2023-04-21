@@ -1,0 +1,57 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: wikijs
+  namespace: media
+spec:
+  values:
+    image:
+      repository: docker pull ghcr.io/requarks/wiki
+      tag: canary-armv7-2.5.0-dev.221
+    env:
+      TZ: ${TIMEZONE}
+
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+
+    ingress:
+      main:
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    postgresql:
+      enabled: false
+
+  valuesFrom:
+    - kind: Secret
+      name: wikijs-secret
+      valuesKey: SERVER
+      targetPath: postgresql.postgresqlHost
+    - kind: Secret
+      name: wikijs-secret
+      valuesKey: DATABASE
+      targetPath: postgresql.postgresqlDatabase
+    - kind: Secret
+      name: wikijs-secret
+      valuesKey: USERNAME
+      targetPath: postgresql.postgresqlUser
+    - kind: Secret
+      name: wikijs-secret
+      valuesKey: PASSWORD
+      targetPath: postgresql.postgresqlPassword
+
+
+
+
+
