@@ -30,7 +30,7 @@ spec:
       strategy: RollingUpdate
     image:
       repository: ghcr.io/requarks/wiki
-      tag: canary-armv7-2.5.0-dev.221
+      tag: canary-2.5.0-dev.221
     service:
       main:
         ports:
