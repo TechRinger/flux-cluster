@@ -31,8 +31,6 @@ spec:
     image:
       repository: ghcr.io/requarks/wiki
       tag: canary-armv7-2.5.0-dev.221
-    env:
-      TZ: ${TIMEZONE}
     service:
       main:
         ports:
