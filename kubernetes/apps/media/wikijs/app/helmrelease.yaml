@@ -72,7 +72,7 @@ spec:
       enabled: false
     envFrom:
       - secretRef:
-          name: discord-xsoar-secret
+          name: wikijs-secret
     # - name: DB_TYPE
     # - name: DB_HOST
     # - name: DB_PORT
