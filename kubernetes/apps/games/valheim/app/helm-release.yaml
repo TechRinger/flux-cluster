@@ -97,8 +97,8 @@ spec:
 
     resources:
       requests:
-        cpu: 511m
-        memory: 5528M
+        cpu: 1024m
+        memory: 8295M
 
     # affinity:
     #   nodeAffinity:

@@ -41,7 +41,6 @@ spec:
         httpGet:
           path: /healthz
           port: http
-
       readinessProbe:
         httpGet:
           path: /healthz
@@ -71,6 +70,10 @@ spec:
               - *host
     postgresql:
       enabled: false
+    command:
+    - sh
+    - c
+    - cat /wiki/config.yml
   valuesFrom:
     - kind: Secret
       name: wikijs-secret
