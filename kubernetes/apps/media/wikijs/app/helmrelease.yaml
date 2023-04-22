@@ -8,11 +8,10 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: app-template
-      version: 1.3.2
+      chart: requarks/wiki
       sourceRef:
         kind: HelmRepository
-        name: bjw-s
+        name: wikijs-charts
         namespace: flux-system
   maxHistory: 3
   install:
