@@ -6,10 +6,4 @@ namespace: media
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
-patches:
-  - path: https://raw.githubusercontent.com/TechRinger/flux-cluster/master/kubernetes/flux/config/patch-ss.yaml
-    target:
-      kind: HelmRelease
-  - path: https://raw.githubusercontent.com/TechRinger/flux-cluster/master/kubernetes/flux/config/patch-unraid-perms.yaml
-    target:
-      kind: HelmRelease
+
