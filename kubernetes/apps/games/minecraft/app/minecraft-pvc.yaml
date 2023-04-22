@@ -2,7 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: file-server-claim
-  namespace: security
+  namespace: games
 spec:
   storageClassName: nfs-client
   accessModes:
