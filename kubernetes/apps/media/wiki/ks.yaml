@@ -9,7 +9,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-longhorn
-  path: ./kubernetes/apps/media/wikijs/app
+  path: ./kubernetes/apps/media/wiki/app
   prune: true
   sourceRef:
     kind: GitRepository
