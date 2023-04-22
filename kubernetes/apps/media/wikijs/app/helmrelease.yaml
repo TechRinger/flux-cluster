@@ -8,7 +8,7 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: requarks/wiki
+      chart: wiki
       sourceRef:
         kind: HelmRepository
         name: wikijs-charts
