@@ -72,7 +72,6 @@ spec:
       enabled: false
     command:
     - sh
-    - c
     - cat /wiki/config.yml
   valuesFrom:
     - kind: Secret
