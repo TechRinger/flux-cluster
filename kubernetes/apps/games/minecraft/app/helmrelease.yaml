@@ -37,13 +37,13 @@ spec:
 
     minecraftServer:
       # This must be overridden, since we can't accept this for the user.
-      eula: "TRUE"
+      eula: "FALSE"
       # One of: LATEST, SNAPSHOT, or a specific version (ie: "1.7.9").
       version: "LATEST"
       # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE"
-      type: "VANILLA"
+      type: "CURSEFORGE"
       # If type is set to FORGE, this sets the version; this is ignored if forgeInstallerUrl is set
-
+      cfServerMod: "https://www.curseforge.com/minecraft/modpacks/decorations-modpack-forge/download/4520706"
       # One of: peaceful, easy, normal, and hard
       difficulty: normal
       # A comma-separated list of player names who should be admins.
