@@ -6,3 +6,4 @@ resources:
   - ./minecraft/ks.yaml
   # - ./minecraft-proxy/ks.yaml
   - ./valheim/ks.yaml
+  - ./dashcraft/ks.yaml

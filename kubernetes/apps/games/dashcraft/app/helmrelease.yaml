@@ -1,0 +1,147 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app dashcraft
+  namespace: games
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: minecraft
+      version: 4.7.4
+      sourceRef:
+        kind: HelmRepository
+        name: minecraft
+        namespace: flux-system
+  values:
+    # ref: https://hub.docker.com/r/itzg/minecraft-server/
+
+    # ### WARNING ###
+    # Minecraft is not horizontally scalable, adjusting this will most likely break your setup.
+    # ### WARNING ###
+    replicaCount: 1
+
+    ## Configure resource requests and limits
+    ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+    ##
+    resources:
+      requests:
+        memory: 1024Mi
+        cpu: 500m
+      limits:
+        memory: 64456Mi
+
+    # upgrade strategy type (e.g. Recreate or RollingUpdate)
+    strategyType: Recreate
+
+    minecraftServer:
+      # This must be overridden, since we can't accept this for the user.
+      eula: "FALSE"
+      # One of: LATEST, SNAPSHOT, or a specific version (ie: "1.7.9").
+      version: "LATEST"
+      # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE"
+      type: "CURSEFORGE"
+      # If type is set to FORGE, this sets the version; this is ignored if forgeInstallerUrl is set
+      cfServerMod: "https://www.curseforge.com/minecraft/mc-mods/biomes-o-plenty"
+      # One of: peaceful, easy, normal, and hard
+      difficulty: normal
+      # A comma-separated list of player names who should be admins.
+      ops: [Void_Ninjas,The_Last_Thor,CelticChaos]
+
+      # Max connected players.
+      maxPlayers: 20
+      # This sets the maximum possible size in blocks, expressed as a radius, that the world border can obtain.
+      maxWorldSize: 10000
+      # Allows players to travel to the Nether.
+      allowNether: true
+      # Allows server to announce when a player gets an achievement.
+      announcePlayerAchievements: true
+      # Enables command blocks.
+      enableCommandBlock: true
+
+      # Define this if you want a specific map generation seed.
+      levelSeed: -2909343002793827664
+      # One of: creative, survival, adventure, spectator
+      gameMode: survival
+      # Message of the Day
+      motd: "Welcome to Dashcraft, prepare to Die!"
+      # If true, enable player-vs-player damage.
+      pvp: false
+      # One of: DEFAULT, FLAT, LARGEBIOMES, AMPLIFIED, CUSTOMIZED
+      levelType: DEFAULT
+      # When levelType == FLAT or CUSTOMIZED, this can be used to further customize map generation.
+      # ref: https://hub.docker.com/r/itzg/minecraft-server/
+      worldSaveName: dash-world
+      # Check accounts against Minecraft account service.
+      onlineMode: true
+      # If you adjust this, you may need to adjust resources.requests above to match.
+      memory: 1024M
+      # General JVM options to be passed to the Minecraft server invocation
+      jvmOpts: ""
+      # Options like -X that need to proceed general JVM options
+      jvmXXOpts: ""
+      # By default, the server configuration will be created and set based on the following environment variables, but only the first time the server is started
+      # If you would like to override the server configuration each time the container starts up, you can set this to true
+      # see https://github.com/itzg/docker-minecraft-server#server-configuration
+      overrideServerProperties: false
+      serviceType: LoadBalancer
+      # Set the external port of the service, usefull when using the LoadBalancer service type
+      servicePort: 13245
+      #loadBalancerIP:
+      # loadBalancerSourceRanges: []
+      ## Set the externalTrafficPolicy in the Service to either Cluster or Local
+      externalTrafficPolicy: Cluster
+
+      # A list of Spigot resources/plugins IDs to download.
+      spigetResources: []
+
+      rcon:
+        # If you enable this, make SURE to change your password below.
+        enabled: true
+        #password:
+        serviceType: LoadBalancer
+        #loadBalancerIP:
+        # loadBalancerSourceRanges: []
+        ## Set the externalTrafficPolicy in the Service to either Cluster or Local
+        externalTrafficPolicy: Cluster
+
+    persistence:
+      annotations: {}
+      ## minecraft data Persistent Volume Storage Class
+      ## If defined, storageClassName: <storageClass>
+      ## If set to "-", storageClassName: "", which disables dynamic provisioning
+      ## If undefined (the default) or set to null, no storageClassName spec is
+      ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+      ##   GKE, AWS & OpenStack)
+      ##
+      storageClass: nfs-client
+      dataDir:
+        # Set this to false if you don't care to persist state between restarts.
+        enabled: "true"
+        Size: 1Mi
+        # existingClaim: nil
+        ## specify a subpath in the volume where the data is. Useful when sharing volumes with other apps.
+        # subPath: /path/to/dataDir
+
+    serviceAnnotations:
+      metallb.universe.tf/allow-shared-ip: "games"
+    rconServiceAnnotations:
+      metallb.universe.tf/allow-shared-ip: "games"
+  valuesFrom:
+    - kind: Secret
+      name: dashcraft-secret
+      valuesKey: LB_IP
+      targetPath: minecraftServer.loadBalancerIP
+    - kind: Secret
+      name: dashcraft-secret
+      valuesKey: LB_IP
+      targetPath: minecraftServer.rcon.loadBalancerIP
+    - kind: Secret
+      name: dashcraft-secret
+      valuesKey: RCON_PASSWORD
+      targetPath: minecraftServer.rcon.password
+    - kind: Secret
+      name: dashcraft-secret
+      valuesKey: RCON_PORT_DASH
+      targetPath: minecraftServer.rcon.port
