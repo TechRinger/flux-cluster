@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: file-server-claim
+  name: dashcraft-file-server
   namespace: games
 spec:
   storageClassName: nfs-client

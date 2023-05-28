@@ -120,7 +120,7 @@ spec:
         # Set this to false if you don't care to persist state between restarts.
         enabled: "true"
         Size: 1Mi
-        # existingClaim: nil
+        existingClaim: dashcraft-file-server
         ## specify a subpath in the volume where the data is. Useful when sharing volumes with other apps.
         # subPath: /path/to/dataDir
 
