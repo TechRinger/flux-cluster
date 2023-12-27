@@ -2,13 +2,13 @@
 fail_fast: false
 repos:
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.32.0
+    rev: v1.33.0
     hooks:
       - args:
           - --config-file
           - .yamllint.yaml
         id: yamllint
   - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.22
+    rev: v0.1.23
     hooks:
       - id: terraform-fmt

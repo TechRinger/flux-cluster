@@ -20,7 +20,7 @@ jobs:
     #     uses: Ilshidur/action-discord@master
     #   with:
     #     args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} was updated.'
-    - uses: sarisia/actions-status-discord@82409b24a08684f54ea5baa6b376e36dad37fb81 # v1
+    - uses: sarisia/actions-status-discord@9904e3130b8905d5b973df25623f17672dcb3466 # v1
       if: always()
       with:
         webhook: ${{ secrets.DISCORD_WEBHOOK }}
