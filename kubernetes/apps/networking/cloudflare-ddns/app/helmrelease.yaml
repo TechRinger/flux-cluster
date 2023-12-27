@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.0
+      version: 2.3.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -34,7 +34,7 @@ spec:
     restartPolicy: OnFailure
     image:
       repository: ghcr.io/onedr0p/kubernetes-kubectl
-      tag: 1.27.2@sha256:86255d3ed5d85686d59444f5fc042bf56bf434c3ad4efe04f532c36326791243
+      tag: 1.28.4@sha256:7039783f8ecb83acf0f5359ec7aa901f6e73af1c76470e7317caf19f7514fedd
     command: ["/bin/bash", "/app/cloudflare-ddns.sh"]
     envFrom:
       - secretRef:
