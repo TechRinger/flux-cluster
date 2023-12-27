@@ -8,7 +8,7 @@ spec:
   values:
     image:
       repository: ghcr.io/bjw-s/calibre-web
-      tag: 0.6.20@sha256:f3ee196be5304f7d2915d088c7591836bbb2642fcbea6ed84d2a8e64b71553e8
+      tag: 0.6.20@sha256:5bd1c1cee482e52ece70e4e2fe0589d1910455e3e09e330c92c24bd304edccfb
 
     env:
       CACHE_DIR: /cache
