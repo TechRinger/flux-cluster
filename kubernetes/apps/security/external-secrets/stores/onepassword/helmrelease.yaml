@@ -26,13 +26,37 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    controller:
+    controllers:
       annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      # https://github.com/1Password/connect/issues/56
-      repository: docker.io/1password/connect-api
-      tag: 1.7.2
+      reloader.stakater.com/auto: "true"
+      main:
+        strategy: RollingUpdate
+      containers:
+        image:
+          # https://github.com/1Password/connect/issues/56
+          repository: docker.io/1password/connect-api
+          tag: 1.7.2
+        probes:
+          liveness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /heartbeat
+                port: *port
+              initialDelaySeconds: 15
+              periodSeconds: 30
+              failureThreshold: 3
+          readiness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /health
+                port: *port
+              initialDelaySeconds: 15
+          startup:
+            enabled: false
     env:
       OP_BUS_PORT: "11220"
       OP_BUS_PEERS: "localhost:11221"
@@ -47,27 +71,7 @@ spec:
         ports:
           http:
             port: *port
-    probes:
-      liveness:
-        enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /heartbeat
-            port: *port
-          initialDelaySeconds: 15
-          periodSeconds: 30
-          failureThreshold: 3
-      readiness:
-        enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /health
-            port: *port
-          initialDelaySeconds: 15
-      startup:
-        enabled: false
+
     ingress:
       main:
         enabled: true

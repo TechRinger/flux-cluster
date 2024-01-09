@@ -26,32 +26,35 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    controller:
-      strategy: RollingUpdate
-    image:
-      repository: botpress/server
-      pullPolicy: IfNotPresent
-      tag: latest
+    controllers:
+      main:
+        strategy: RollingUpdate
+      containers:
+        image:
+          repository: botpress/server
+          pullPolicy: IfNotPresent
+          tag: latest
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /admin
+                port: *port
+              initialDelaySeconds: 120
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          # readiness: *probes
+          startup:
+          enabled: false
     service:
       main:
         ports:
           http:
             port: &port 3000
-    probes:
-      liveness: &probes
-        enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /admin
-            port: *port
-          initialDelaySeconds: 120
-          periodSeconds: 10
-          timeoutSeconds: 1
-          failureThreshold: 3
-      # readiness: *probes
-      startup:
-        enabled: false
+
     ingress:
       main:
         enabled: true
