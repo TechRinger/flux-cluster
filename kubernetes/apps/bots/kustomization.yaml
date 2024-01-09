@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./discord-xsoar/ks.yaml
-  - ./botpress/ks.yaml
+  # - ./botpress/ks.yaml
